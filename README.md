@@ -1,1 +1,0 @@
-# mirko_ligo_test
