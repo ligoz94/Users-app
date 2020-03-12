@@ -1,9 +1,17 @@
-import React from 'react';
-import {Text} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {Text, TouchableOpacity} from 'react-native';
+// Styles
 import * as S from './style';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+// Actions
+import {GetUsers, GetSingleUser} from '../../store/actions';
+// Library
+import {connect} from 'react-redux';
 
 const Homepage = (props: any) => {
+  useEffect(() => {
+    props.getUsers();
+  }, []);
+
   return (
     <S.Container>
       <Text>lista</Text>
@@ -19,4 +27,20 @@ const Homepage = (props: any) => {
   );
 };
 
-export default Homepage;
+const mapStateToProps = ({UsersReducer}: any) => {
+  return {
+    users: UsersReducer && UsersReducer.data && UsersReducer.data.users,
+    isFetching:
+      UsersReducer && UsersReducer.data && UsersReducer.data.isFetching,
+    hasError: UsersReducer && UsersReducer.data && UsersReducer.data.hasError,
+  };
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    getUsers: () => dispatch(GetUsers()),
+    getSingleUser: (id: number) => dispatch(GetSingleUser(id)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

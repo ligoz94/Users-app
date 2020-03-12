@@ -12,14 +12,19 @@ import React from 'react';
 import {SafeAreaView, ActivityIndicator} from 'react-native';
 //Navigation
 import AppContainer from './src/navigator/appContainer';
+// State management
+import {Provider} from 'react-redux';
+import store from './src/store';
 
 const App = () => {
   return (
-    <SafeAreaView style={{backgroundColor: 'white', flex: 1}}>
-      <AppContainer
-        renderLoadingExperimental={() => <ActivityIndicator size="large" />}
-      />
-    </SafeAreaView>
+    <Provider store={store}>
+      <SafeAreaView style={{backgroundColor: 'white', flex: 1}}>
+        <AppContainer
+          renderLoadingExperimental={() => <ActivityIndicator size="large" />}
+        />
+      </SafeAreaView>
+    </Provider>
   );
 };
 
