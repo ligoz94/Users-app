@@ -4,11 +4,21 @@ import {GET_USERS, GET_USERS_FAIL, GET_USERS_SUCCESS} from './actionTypes';
 import Config from 'react-native-config';
 import {checkError} from '../../utils';
 
-const GetUsers = () => {
+const GetUsers = (name: string) => {
   return (dispatch: any) => {
+    let url = '';
+    if (name && name.length > 0) {
+      url = `${Config.REACT_APP_API_URL}/search/users?q=${name}`;
+    } else {
+      url = `${Config.REACT_APP_API_URL}/users?since=1&per_page=30`;
+    }
     dispatch({type: GET_USERS});
-    return fetch(`${Config.REACT_APP_API_URL}/users`, {
+    return fetch(url, {
       method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token c3084f98d18b73480290cd299348af1aee5a9296`,
+      },
     })
       .then(response => {
         return checkError(response);
@@ -16,7 +26,7 @@ const GetUsers = () => {
       .then(responseJson => {
         dispatch({
           type: GET_USERS_SUCCESS,
-          payload: {users: responseJson},
+          payload: name ? {users: responseJson.items} : {users: responseJson},
         });
       })
       .catch(error => {

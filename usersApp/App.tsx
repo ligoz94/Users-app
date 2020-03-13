@@ -16,6 +16,9 @@ import AppContainer from './src/navigator/appContainer';
 import {Provider} from 'react-redux';
 import store from './src/store';
 
+import Icon from 'react-native-vector-icons/Ionicons';
+Icon.loadFont();
+
 const App = () => {
   return (
     <Provider store={store}>

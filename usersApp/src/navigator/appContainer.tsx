@@ -54,6 +54,13 @@ const AppNavigator = createStackNavigator(
     },
     HomePage: {
       screen: HomePage,
+      navigationOptions: () => {
+        return {
+          headerStyle: {
+            height: 0,
+          },
+        };
+      },
     },
   },
   {

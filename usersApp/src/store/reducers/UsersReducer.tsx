@@ -12,8 +12,7 @@ import {Action} from '../../utils/interfaces';
 
 const INITIAL_STATE = {
   isFetching: false,
-  users: [],
-  user: {},
+  data: [],
   hasError: false,
   errorMessage: null,
 };
