@@ -24,7 +24,11 @@ const UsersReducer = (state = INITIAL_STATE, action: Action) => {
       return {...state, isFetching: true};
     case GET_USERS_SUCCESS:
     case GET_SINGLE_USER_SUCCESS:
-      return {...state, isFetching: false, data: action.payload};
+      return {
+        ...state,
+        isFetching: false,
+        data: {...state.data, ...action.payload},
+      };
     case GET_USERS_FAIL:
     case GET_SINGLE_USER_FAIL:
       return {

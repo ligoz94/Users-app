@@ -8,10 +8,10 @@ import {
 import Config from 'react-native-config';
 import {checkError} from '../../utils';
 
-const GetSingleUser = (id: number) => {
+const GetSingleUser = (name: string) => {
   return (dispatch: any) => {
     dispatch({type: GET_SINGLE_USER});
-    return fetch(`${Config.REACT_APP_API_URL}/users/${id}`, {
+    return fetch(`${Config.REACT_APP_API_URL}/users/${name}`, {
       method: 'GET',
     })
       .then(response => {
