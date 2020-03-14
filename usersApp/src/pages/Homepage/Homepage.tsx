@@ -12,7 +12,14 @@ import {DynamicList} from '../../components/atoms';
 import Config from 'react-native-config';
 import {User} from '../../utils/interfaces';
 
-const Homepage = (props: any) => {
+interface Props {
+  users: User[];
+  isFetching: boolean;
+  hasError: boolean;
+  getUsers: (name: string) => void;
+}
+
+const Homepage: React.FC<Props> = (props: any) => {
   const [search, setSearch] = useState<string>('');
   const [offset, setOffest] = useState<number>(2);
   const [refreshing, setRefreshing] = useState<boolean>(false);
@@ -108,8 +115,7 @@ const mapStateToProps = ({UsersReducer}: any) => {
 const mapDispatchToProps = (dispatch: any) => {
   return {
     getUsers: (name: string) => dispatch(GetUsers(name)),
-    getSingleUser: (id: number) => dispatch(GetSingleUser(id)),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Homepage);
+export default connect(mapStateToProps, mapDispatchToProps)(Homepage as any);

@@ -12,7 +12,6 @@ export const Separator = styled.View`
 export const LoadMoreWrapper = styled.View`
   height: 60px;
   background-color: ${variables.blue};
-  /* border-width: 3px; */
   margin: 10px;
   justify-content: center;
   align-items: center;

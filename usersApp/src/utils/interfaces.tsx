@@ -1,7 +1,7 @@
 // Action interface
 export interface Action {
   type: string;
-  payload: number;
+  payload: object;
 }
 
 // User interface
@@ -13,4 +13,5 @@ export interface User {
   location?: string;
   email?: string;
   name?: string;
+  html_url?: string;
 }
