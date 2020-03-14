@@ -7,19 +7,20 @@ import {
 } from 'react-native';
 // Styles
 import * as S from './style';
-// Components
-import {ListItem} from 'react-native-elements';
+// Interfaces
 import {User} from '../../../utils/interfaces';
+// Styles
 import variables from '../../../styles/variables';
 
 interface Props {
   data: User[];
-  onLoadMore: () => void;
+  onLoadMore?: () => void;
   isFetching: boolean;
-  refreshing: boolean;
-  isLoadMore: boolean;
-  onClickItem: (user: User) => void;
-  onRefresh: () => void;
+  refreshing?: boolean;
+  isLoadMore?: boolean;
+  onClickItem?: (user: User) => void;
+  onRefresh?: () => void;
+  row: (item: any) => any;
 }
 
 const DynamicList: React.FC<Props> = (props: any) => {
@@ -59,16 +60,7 @@ const DynamicList: React.FC<Props> = (props: any) => {
           style={{width: '100%'}}
           keyExtractor={(item, index) => index.toString()}
           data={data}
-          renderItem={({item}) => (
-            <TouchableOpacity onPress={() => props.onClickItem(item)}>
-              <ListItem
-                leftAvatar={{source: {uri: item.avatar_url}}}
-                title={item.login}
-                bottomDivider
-                chevron={{color: variables.indigo}}
-              />
-            </TouchableOpacity>
-          )}
+          renderItem={props.row}
           ListFooterComponent={renderFooter}
           refreshing={props.refreshing}
           onRefresh={props.onRefresh}
