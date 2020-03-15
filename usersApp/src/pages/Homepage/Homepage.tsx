@@ -10,11 +10,7 @@ interface Props {}
 const Homepage: React.FC<Props> = (props: any) => {
   return (
     <S.Container>
-      {props.isFetching ? (
-        <ActivityIndicator size="large" />
-      ) : (
-        <UsersList></UsersList>
-      )}
+      <UsersList navigation={props.navigation}></UsersList>
     </S.Container>
   );
 };

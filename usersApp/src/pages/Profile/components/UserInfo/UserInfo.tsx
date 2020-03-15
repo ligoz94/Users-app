@@ -6,6 +6,7 @@ import * as S from './style';
 import {SimpleText} from '../../../../components/atoms';
 //Interfaces
 import {User} from '../../../../utils/interfaces';
+import variables from '../../../../styles/variables';
 
 interface Props {
   user: User;
@@ -20,6 +21,7 @@ const UserInfo: React.FC<Props> = (props: any) => {
           headline="Name"
           title={props.user && props.user.name}></SimpleText>
         <SimpleText
+          style={{title: {color: variables.blue}}}
           headline="Profilo"
           title={props.user && props.user.html_url}
           onPress={() =>

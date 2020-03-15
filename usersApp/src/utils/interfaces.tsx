@@ -15,3 +15,10 @@ export interface User {
   name?: string;
   html_url?: string;
 }
+
+// Repo interface
+export interface Repo {
+  stargazers_count: number;
+  full_name: string;
+  html_url: string;
+}

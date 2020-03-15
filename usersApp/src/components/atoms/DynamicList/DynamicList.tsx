@@ -13,18 +13,17 @@ import {User} from '../../../utils/interfaces';
 import variables from '../../../styles/variables';
 
 interface Props {
-  data: User[];
+  data: any[];
   onLoadMore?: () => void;
   isFetching: boolean;
   refreshing?: boolean;
   isLoadMore?: boolean;
-  onClickItem?: (user: User) => void;
   onRefresh?: () => void;
-  row: (item: any) => any;
+  row: (item: any) => void;
 }
 
 const DynamicList: React.FC<Props> = (props: any) => {
-  const [data, setData] = useState<User[]>([]);
+  const [data, setData] = useState<any[]>([]);
 
   useEffect(() => {
     setData(props.data);
@@ -32,7 +31,7 @@ const DynamicList: React.FC<Props> = (props: any) => {
 
   const renderFooter = () => {
     return (
-      //Footer View with Load More button
+      //Footer with Load More button
       props.isLoadMore ? (
         <ActivityIndicator
           color={variables.blue}
@@ -61,7 +60,7 @@ const DynamicList: React.FC<Props> = (props: any) => {
           keyExtractor={(item, index) => index.toString()}
           data={data}
           renderItem={props.row}
-          ListFooterComponent={renderFooter}
+          ListFooterComponent={props.onLoadMore ? renderFooter : null}
           refreshing={props.refreshing}
           onRefresh={props.onRefresh}
         />

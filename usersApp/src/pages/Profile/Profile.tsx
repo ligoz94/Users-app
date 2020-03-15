@@ -9,6 +9,7 @@ import * as S from './style';
 import UserInfo from './components/UserInfo/UserInfo';
 //Interfaces
 import {User} from '../../utils/interfaces';
+import variables from '../../styles/variables';
 
 interface Props {
   user: User;
@@ -22,15 +23,19 @@ const Profile: React.FC<Props> = (props: any) => {
   let title = props.navigation.getParam('title');
 
   useEffect(() => {
+    // Get single user
     props.getSingleUser(title);
   }, []);
 
   return (
     <S.Container>
       {props.isFetching ? (
-        <ActivityIndicator size="large"></ActivityIndicator>
+        <ActivityIndicator
+          style={{marginTop: 30}}
+          color={variables.blue}
+          size="large"></ActivityIndicator>
       ) : (
-        <UserInfo user={props.user || {}} />
+        <UserInfo user={props.user} />
       )}
     </S.Container>
   );

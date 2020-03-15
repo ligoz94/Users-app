@@ -13,6 +13,7 @@ const TabScreen = createMaterialTopTabNavigator(
     Repositories: {screen: Repositories},
   },
   {
+    lazy: true,
     tabBarPosition: 'top',
     swipeEnabled: true,
     tabBarOptions: {

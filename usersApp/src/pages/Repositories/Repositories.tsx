@@ -1,11 +1,16 @@
 import React from 'react';
-import {Text} from 'react-native';
 import * as S from './style';
+// Components
+import ReposList from './components/ReposList';
 
-const Repositories = () => {
+interface Props {}
+
+const Repositories: React.FC<Props> = (props: any) => {
+  let username = props.navigation.getParam('title');
+
   return (
     <S.Container>
-      <Text>Repositories</Text>
+      <ReposList username={username}></ReposList>
     </S.Container>
   );
 };

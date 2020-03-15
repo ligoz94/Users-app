@@ -4,7 +4,7 @@ import {GET_USERS, GET_USERS_FAIL, GET_USERS_SUCCESS} from './actionTypes';
 import Config from 'react-native-config';
 import {checkError} from '../../utils';
 
-const GetUsers = (name: string) => {
+const GetUsers: any = (name: string) => {
   return (dispatch: any) => {
     let url = '';
     if (name && name.length > 0) {
@@ -17,7 +17,7 @@ const GetUsers = (name: string) => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Token c3084f98d18b73480290cd299348af1aee5a9296`,
+        Authorization: `Token 886f854d7c88059f8eb3ab945f04139410a25829`,
       },
     })
       .then(response => {

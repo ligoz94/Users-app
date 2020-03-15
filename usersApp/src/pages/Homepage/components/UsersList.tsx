@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {TouchableOpacity} from 'react-native';
+import {TouchableOpacity, ActivityIndicator} from 'react-native';
 // Styles
 import * as S from './style';
 import variables from '../../../styles/variables';
 // Actions
-import {GetUsers, GetSingleUser} from '../../../store/actions';
+import {GetUsers} from '../../../store/actions';
 // Library
 import {connect} from 'react-redux';
 //Components
@@ -19,6 +19,7 @@ interface Props {
   isFetching: boolean;
   hasError: boolean;
   getUsers: (name: string) => void;
+  navigation: any;
 }
 
 const UsersList: React.FC<Props> = (props: any) => {
@@ -77,9 +78,9 @@ const UsersList: React.FC<Props> = (props: any) => {
     }
   }, [props.isFetching, data]);
 
-  console.log(data);
-
-  return (
+  return props.isFetching ? (
+    <ActivityIndicator size="large" />
+  ) : (
     <S.Container>
       <S.TextInput
         placeholder="Search for users"
@@ -92,13 +93,13 @@ const UsersList: React.FC<Props> = (props: any) => {
         isFetching={props.isFetching}
         onLoadMore={onLoadMore}
         isLoadMore={isLoadMore}
-        onClickItem={user =>
-          props.navigation.navigate('TabScreen', {
-            title: user.login,
-          })
-        }
         row={({item}) => (
-          <TouchableOpacity onPress={() => props.onClickItem(item)}>
+          <TouchableOpacity
+            onPress={() =>
+              props.navigation.navigate('TabScreen', {
+                title: item.login,
+              })
+            }>
             <ListItem
               leftAvatar={{source: {uri: item.avatar_url}}}
               title={item.login}
@@ -128,4 +129,7 @@ const mapDispatchToProps = (dispatch: any) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersList as any);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(UsersList as any) as any;
