@@ -12,13 +12,10 @@ const GetUsers: any = (name: string) => {
     } else {
       url = `${Config.REACT_APP_API_URL}/users?since=1&per_page=30`;
     }
+    console.log('url', url);
     dispatch({type: GET_USERS});
     return fetch(url, {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Token 886f854d7c88059f8eb3ab945f04139410a25829`,
-      },
     })
       .then(response => {
         return checkError(response);
