@@ -117,7 +117,6 @@ const ReposList: React.FC<Props> = (props: any) => {
   );
 };
 const mapStateToProps = ({UsersReducer}: any) => {
-  console.log(UsersReducer.data.repos);
   return {
     repos: UsersReducer && UsersReducer.data && UsersReducer.data.repos,
     isFetching: UsersReducer && UsersReducer.isFetching,
