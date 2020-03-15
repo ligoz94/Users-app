@@ -12,5 +12,5 @@ cd ios/ && pod install
 
 #### Run the project:
 ```
-react-native run-ios
+cd .. && react-native run-ios
 ```
