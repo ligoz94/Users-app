@@ -2,7 +2,7 @@
 
 #### Install the packages using yarn:
 ```
-yarn install
+cd Users-app && yarn install
 ```
 
 #### Install libraries:
