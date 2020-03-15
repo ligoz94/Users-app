@@ -18,10 +18,6 @@ const GetUserRepos = (name: string, sort?: string, direction?: string) => {
       `${Config.REACT_APP_API_URL}/users/${name}/repos?sort=${sortValue}&direction=${directionValue}`,
       {
         method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Token 886f854d7c88059f8eb3ab945f04139410a25829`,
-        },
       },
     )
       .then(response => {
