@@ -11,7 +11,6 @@ import {checkError} from '../../utils';
 const GetUserRepos = (name: string, sort?: string, direction?: string) => {
   let sortValue: string = sort ? sort : 'full_name';
   let directionValue: string = direction ? direction : 'asc';
-
   return (dispatch: any) => {
     dispatch({type: GET_USER_REPO});
     return fetch(

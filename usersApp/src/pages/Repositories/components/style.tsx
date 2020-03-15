@@ -26,7 +26,7 @@ export const Filters = styled.View`
 `;
 
 export const PickerWrapper = styled.View`
-  min-width: 80;
+  min-width: 80px;
   padding: 0 10px;
 `;
 export const FilterTitle = styled.Text`

@@ -60,7 +60,7 @@ const ReposList: React.FC<Props> = (props: any) => {
 
   const onDone = () => {
     // get new repos with filters
-    props.getUserRepos({sort: sort, direction: direction});
+    props.getUserRepos(props.username, sort, direction);
   };
 
   return loading ? (
