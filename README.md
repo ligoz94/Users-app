@@ -1,5 +1,4 @@
-# mirko_ligo_test
-Users app 
+# Users app 
 
 #### Install the packages using yarn:
 ```
