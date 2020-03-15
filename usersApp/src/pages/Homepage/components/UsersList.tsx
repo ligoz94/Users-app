@@ -34,10 +34,6 @@ const UsersList: React.FC<Props> = (props: any) => {
     setIsLoadMore(true);
     fetch(`${Config.REACT_APP_API_URL}/users?since=${offset}&per_page=30`, {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Token c3084f98d18b73480290cd299348af1aee5a9296`,
-      },
     })
       .then(response => response.json())
       .then(responseJson => {
@@ -76,11 +72,9 @@ const UsersList: React.FC<Props> = (props: any) => {
       setData(props.users);
       setRefreshing(false);
     }
-  }, [props.isFetching, data]);
+  }, [props.isFetching, props.users, data]);
 
-  return props.isFetching ? (
-    <ActivityIndicator size="large" />
-  ) : (
+  return (
     <S.Container>
       <S.TextInput
         placeholder="Search for users"
@@ -88,29 +82,33 @@ const UsersList: React.FC<Props> = (props: any) => {
         value={search}
         clearButtonMode="always"
       />
-      <DynamicList
-        data={data}
-        isFetching={props.isFetching}
-        onLoadMore={onLoadMore}
-        isLoadMore={isLoadMore}
-        row={({item}) => (
-          <TouchableOpacity
-            onPress={() =>
-              props.navigation.navigate('TabScreen', {
-                title: item.login,
-              })
-            }>
-            <ListItem
-              leftAvatar={{source: {uri: item.avatar_url}}}
-              title={item.login}
-              bottomDivider
-              chevron={{color: variables.indigo}}
-            />
-          </TouchableOpacity>
-        )}
-        onRefresh={onRefresh}
-        refreshing={refreshing}
-      />
+      {props.isFetching ? (
+        <ActivityIndicator size="large" />
+      ) : (
+        <DynamicList
+          data={data}
+          isFetching={props.isFetching}
+          onLoadMore={onLoadMore}
+          isLoadMore={isLoadMore}
+          row={({item}) => (
+            <TouchableOpacity
+              onPress={() =>
+                props.navigation.navigate('TabScreen', {
+                  title: item.login,
+                })
+              }>
+              <ListItem
+                leftAvatar={{source: {uri: item.avatar_url}}}
+                title={item.login}
+                bottomDivider
+                chevron={{color: variables.indigo}}
+              />
+            </TouchableOpacity>
+          )}
+          onRefresh={onRefresh}
+          refreshing={refreshing}
+        />
+      )}
     </S.Container>
   );
 };

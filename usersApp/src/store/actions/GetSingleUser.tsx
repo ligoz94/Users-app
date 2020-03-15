@@ -13,10 +13,6 @@ const GetSingleUser = (name: string) => {
     dispatch({type: GET_SINGLE_USER});
     return fetch(`${Config.REACT_APP_API_URL}/users/${name}`, {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Token 886f854d7c88059f8eb3ab945f04139410a25829`,
-      },
     })
       .then(response => {
         return checkError(response);
